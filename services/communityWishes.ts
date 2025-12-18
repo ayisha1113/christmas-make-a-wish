@@ -1,7 +1,7 @@
 export const COMMUNITY_WISHES = [
   "User from Tokyo: 希望家人平安健康，明年能去海边度假。",
   "User from New York: May the world be filled with peace and love.",
-  "User from London: Looking forward to a brilliant 2024!",
+  "User from London: Looking forward to a brilliant 2026!",
   "User from Beijing: 祝愿祖国繁荣昌盛，事业蒸蒸日上。",
   "User from Paris: Que tous vos rêves deviennent réalité ce Noël.",
   "User from Berlin: Frohe Weihnachten an alle!",
