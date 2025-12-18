@@ -1,3 +1,4 @@
+import { supabase } from "./services/supabase";
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Scene } from './components/Scene';
 import { ChristmasTree } from './components/ChristmasTree';
@@ -102,7 +103,7 @@ function App() {
     setMode(newMode);
   }, []);
 
-  const handleSendWish = useCallback((text: string) => {
+  const handleSendWish = useCallback(async (text: string) => {
     const id = Math.random().toString(36).substr(2, 9);
     const formattedText = `User from ${userLocation}:\n${text}`;
 
@@ -125,6 +126,26 @@ function App() {
     } catch (e) {
         console.error("Save failed", e);
     }
+      // ✅ Write to Supabase (real shared data)
+    try {
+      const { error } = await supabase.from("wishes").insert([
+        {
+          wish: text,            // 注意：这里存用户原始输入
+          city: userLocation,    // 你也可以换成更具体的 city
+          lang: "en",            // 你如果有语言变量就用变量
+          user_hash: "anon",     // 没登录就写固定值或留空
+        },
+      ]);
+
+      if (error) {
+        console.error("Supabase insert error:", error);
+      } else {
+        console.log("Supabase insert success ✅");
+      }
+    } catch (err) {
+      console.error("Supabase insert exception:", err);
+    }
+  
   }, [userLocation]);
 
   const handleWishComplete = useCallback((completedWish: Wish) => {
