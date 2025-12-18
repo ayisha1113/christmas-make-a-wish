@@ -1,0 +1,7 @@
+{
+  "name": "CyberPink Christmas",
+  "description": "A high-performance interactive 3D Christmas experience featuring a futuristic pink aesthetic, particle explosions, and AI-powered hand gesture control.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
